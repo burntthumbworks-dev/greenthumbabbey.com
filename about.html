@@ -4,118 +4,85 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About — Greenthumb Abbey</title>
-  <meta name="description" content="About Greenthumb Abbey — the mods and fun projects workshop of Burnt Thumb Works.">
-  <meta name="theme-color" content="#0C0F0D">
+  <meta name="description" content="About Greenthumb Abbey — free mods and odd builds by His Grace The Duke of Errol, The Dude of Greenthumb Abbey.">
+  <meta name="theme-color" content="#F0E4C7">
   <link rel="icon" href="assets/ga-coin.png" type="image/png">
-  <link rel="stylesheet" href="css/ga-site.css">
-  <link rel="stylesheet" href="css/ga-layout.css">
-  <link rel="stylesheet" href="css/ga-mods.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="ga-header">
-    <div class="wrap ga-header__in">
-      <a class="ga-brand" href="index.html" aria-label="Greenthumb Abbey — home">
-        <img class="ga-coin" src="assets/ga-coin.png" alt="" width="34" height="34">
-        <span>
-          <span class="ga-brand__name">Greenthumb Abbey</span>
-          <span class="ga-brand__sub">Mods &amp; Fun Projects</span>
-        </span>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="index.html" aria-label="Greenthumb Abbey — home">
+        <img class="brand__mark" src="assets/ga-coin.png" alt="" width="42" height="42">
+        <span class="brand__name">Greenthumb Abbey</span>
       </a>
-      <button class="ga-nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">Menu</button>
-      <nav class="ga-nav" id="primary-nav" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="mods.html">Mods</a>
-        <a href="index.html#workshops">Game Lanes</a>
-        <a href="about.html" aria-current="page">About</a>
-        <span class="ga-nav__cta">
-          <a class="ga-btn ga-btn--secondary ga-btn--sm" href="https://burntthumbworks.com/" target="_blank" rel="noopener">Burnt Thumb Works</a>
-        </span>
+      <button class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-controls="primary-nav" aria-expanded="false">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+      </button>
+      <nav class="nav" id="primary-nav" aria-label="Primary">
+        <a class="nav__link" href="mods.html">Mods</a>
+        <a class="nav__link" href="index.html#lanes">Game Lanes</a>
+        <a class="nav__link" href="about.html" aria-current="page">About</a>
+        <span class="nav__cta"><a class="btn btn--primary" href="mods.html">Browse Mods</a></span>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <section class="ga-section">
-      <div class="wrap ga-section__in">
-        <div class="ga-section__head" style="margin-bottom:24px;">
-          <div class="ga-section__head-copy">
-            <p class="ga-eyebrow">About the Workshop</p>
-            <h1 class="ga-h2">Mods, weird sandboxes, and fun side projects.</h1>
-          </div>
-        </div>
-        <div class="ga-prose">
-          <p><strong>Greenthumb Abbey</strong> is the community modding and creative sandbox workshop of <strong>Burnt Thumb Works</strong>, released under the banner of <strong>His Grace The Duke of Errol, The Dude of Greenthumb Abbey</strong>.</p>
-          <p>Nothing here is behind a paywall. It&rsquo;s where lore-faithful overhauls, debug/vehicle toolkits, and game-breaking &ldquo;what if?&rdquo; experiments live alongside guides, controls, and Steam Workshop links.</p>
-          <p>Full commercial games and studio apps live over at <a href="https://burntthumbworks.com/" target="_blank" rel="noopener">burntthumbworks.com</a>.</p>
-        </div>
+    <header class="page-head">
+      <div class="wrap">
+        <p class="eyebrow" style="color:#DEC480;">Colophon</p>
+        <h1 class="page-head__title">Greenthumb Abbey</h1>
+        <p class="page-head__sub">Free mods, overhauls, and odd builds.</p>
       </div>
-    </section>
+    </header>
 
-    <section class="ga-section ga-section--shell" style="border-bottom:none;">
-      <div class="wrap ga-section__in">
-        <div class="ga-section__head">
-          <div class="ga-section__head-copy">
-            <h2 class="ga-h2">How mods here are built</h2>
-          </div>
-        </div>
-        <div class="ga-grid">
-          <article class="ga-card">
-            <div class="ga-card__body">
-              <h3 class="ga-card__title">Honest status labels</h3>
-              <p class="ga-card__sum">If a mod is Alpha WIP, it says Alpha WIP. Features, hotkeys, and version support (like Project Zomboid B41 &amp; B42 or RimWorld 1.5–1.7) are listed straight up.</p>
-            </div>
-          </article>
-          <article class="ga-card">
-            <div class="ga-card__body">
-              <h3 class="ga-card__title">Non-destructive compatibility</h3>
-              <p class="ga-card__sum">Dynamic vehicle pack scanning in Zomboid and runtime Harmony patching in RimWorld instead of overwriting vanilla files.</p>
-            </div>
-          </article>
-          <article class="ga-card">
-            <div class="ga-card__body">
-              <h3 class="ga-card__title">Zero-bloat static site</h3>
-              <p class="ga-card__sum">Pure HTML, CSS, and vanilla JS—no trackers, no login walls, fast on desktop and mobile.</p>
-            </div>
-          </article>
-        </div>
+    <section class="section">
+      <div class="wrap wrap--prose prose">
+        <p><strong>Greenthumb Abbey</strong> is where community game mods and weird side experiments live—published under the banner of <strong>His Grace The Duke of Errol, The Dude of Greenthumb Abbey</strong>.</p>
+        <p>Original commercial games and utility apps live over at <a href="https://burntthumbworks.com/" target="_blank" rel="noopener">burntthumbworks.com</a>.</p>
       </div>
     </section>
   </main>
 
-  <footer class="ga-footer">
-    <div class="wrap ga-footer__grid">
+  <footer class="site-footer">
+    <div class="site-footer__inner">
       <div>
-        <div class="ga-footer__brand">
-          <img class="ga-coin" src="assets/ga-coin.png" alt="" width="28" height="28">
-          <span>Greenthumb Abbey</span>
+        <div class="footer-brand">
+          <img src="assets/ga-coin.png" alt="" width="48" height="48">
+          <span class="nm">Greenthumb<br>Abbey</span>
         </div>
-        <p class="ga-footer__blurb">Mods, overhauls, and fun projects created by <strong>His Grace The Duke of Errol, The Dude of Greenthumb Abbey</strong>.</p>
+        <p class="footer-blurb">Mods &amp; odd projects by His Grace The Duke of Errol, The Dude of Greenthumb Abbey.</p>
       </div>
-      <div class="ga-footer__col">
-        <h2 class="ga-footer__h">Pages</h2>
+      <div class="footer-col">
+        <h2 class="footer-col__h">Mods</h2>
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="mods.html">All Mods</a></li>
-          <li><a href="about.html">About</a></li>
+          <li><a href="mods.html#immortal-game">The Immortal Game</a></li>
+          <li><a href="mods.html#divine-cheats">Divine Cheats</a></li>
+          <li><a href="mods.html#american-in-camelot">An American in Camelot</a></li>
         </ul>
       </div>
-      <div class="ga-footer__col">
-        <h2 class="ga-footer__h">Workshop &amp; Studio</h2>
+      <div class="footer-col">
+        <h2 class="footer-col__h">Workshop &amp; Studio</h2>
         <ul>
-          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3838755002" target="_blank" rel="noopener">The Immortal Game (Workshop)</a></li>
-          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3838755214" target="_blank" rel="noopener">Divine Cheats (Workshop)</a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3838755002" target="_blank" rel="noopener">Steam: The Immortal Game</a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3838755214" target="_blank" rel="noopener">Steam: Divine Cheats</a></li>
           <li><a href="https://burntthumbworks.com/" target="_blank" rel="noopener">Burnt Thumb Works</a></li>
         </ul>
       </div>
     </div>
-    <div class="wrap ga-footer__bar">
-      <span>&copy; <span data-year>2026</span> Greenthumb Abbey · His Grace The Duke of Errol, The Dude of Greenthumb Abbey</span>
-      <span>Free community mods · Zero paywalls</span>
+    <div class="footer-bar">
+      <div class="footer-bar__inner">
+        <span>&copy; <span data-year>2026</span> Greenthumb Abbey</span>
+        <span>His Grace The Duke of Errol, The Dude of Greenthumb Abbey</span>
+      </div>
     </div>
   </footer>
 
-  <script src="js/mods.js"></script>
+  <script src="js/site.js"></script>
 </body>
 </html>

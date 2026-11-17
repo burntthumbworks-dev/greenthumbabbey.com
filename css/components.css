@@ -1,0 +1,101 @@
+/* ============================================================
+   GREENTHUMB ABBEY — Components (Parchment & Abbey Moss)
+   ============================================================ */
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--brass-700);
+  margin: 0 0 var(--space-3);
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  font-family: var(--font-sans); font-weight: var(--weight-semibold);
+  font-size: var(--text-sm); line-height: 1;
+  min-height: 44px;
+  padding: 11px 20px; border-radius: var(--radius-md);
+  border: 1px solid transparent; cursor: pointer; text-decoration: none;
+  white-space: nowrap;
+  transition: background .16s, border-color .16s, color .16s, box-shadow .16s, transform .12s;
+}
+.btn:active { transform: translateY(1px); }
+.btn svg { width: 17px; height: 17px; flex-shrink: 0; }
+
+.btn--primary { background: var(--moss-600); color: var(--accent-fg); box-shadow: var(--shadow-moss); }
+.btn--primary:hover { background: var(--moss-500); color: var(--accent-fg); text-decoration: none; }
+
+.btn--secondary { background: var(--surface-2); color: var(--ink-800); border-color: var(--border-strong); }
+.btn--secondary:hover { background: var(--surface-1); border-color: var(--brass-500); color: var(--ink-900); text-decoration: none; }
+
+.btn--onink { background: var(--brass-400); color: #241B0A; border-color: transparent; }
+.btn--onink:hover { background: var(--brass-300); color: #241B0A; text-decoration: none; }
+
+.btn--lg { padding: 14px 26px; font-size: var(--text-base); }
+.btn--sm { min-height: 36px; padding: 8px 14px; font-size: 13px; }
+
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform .16s, border-color .16s, box-shadow .16s;
+}
+.card:hover {
+  border-color: var(--brass-500);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.card--dark {
+  background: linear-gradient(180deg, #2A2114 0%, #1F180E 100%);
+  border-color: #4A3D29;
+}
+.card--dark .card__title { color: #F4EAD5; }
+.card--dark .card__body { color: #CBBE9F; }
+.card--dark .tag { background: rgba(219,190,120,.14); color: var(--brass-300); border-color: #5A4A2A; }
+
+.card__title {
+  font-family: var(--font-serif);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-xl);
+  line-height: 1.2;
+  letter-spacing: -.01em;
+  color: var(--fg-strong);
+  margin: 0 0 var(--space-3);
+}
+.card__body {
+  font-family: var(--font-serif);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--fg-2);
+  margin: 0;
+}
+
+.tag {
+  display: inline-flex; align-items: center;
+  font-family: var(--font-sans); font-size: 11px; font-weight: var(--weight-bold);
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--brass-700); background: var(--brass-tint);
+  border: 1px solid var(--parchment-300); border-radius: var(--radius-pill);
+  padding: 4px 11px; white-space: nowrap;
+}
+
+.badge {
+  display: inline-flex; align-items: center;
+  font-family: var(--font-sans); font-size: 11px; font-weight: var(--weight-bold);
+  letter-spacing: .05em; text-transform: uppercase;
+  border-radius: var(--radius-pill); padding: 4px 10px; white-space: nowrap;
+}
+.badge--success { color: var(--pine-600); background: var(--pine-tint); border: 1px solid #BCD0B6; }
+.badge--warning { color: var(--gold-600); background: var(--gold-tint); border: 1px solid #E3CE94; }
+.badge--info    { color: var(--slate-600); background: var(--slate-tint); border: 1px solid #BBCFD4; }
+.badge--brass   { color: #F4EAD5; background: rgba(219,190,120,.14); border: 1px solid #5A4A2A; }
+
+svg.ic { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
