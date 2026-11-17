@@ -1,0 +1,98 @@
+/* Greenthumb Abbey — professional personal-site tokens + base. */
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Spectral:ital,wght@0,500;0,600;1,500&display=swap');
+
+:root{
+  /* surfaces — deep, refined, warm-neutral */
+  --bg-base:#0C0F0D;
+  --surface-1:#131714;
+  --surface-2:#181D19;
+  --surface-3:#212722;
+  --shell:#0F1310;
+
+  /* green — single brand accent, used with restraint */
+  --green-600:#184D2D;
+  --green-700:#0E3A20;
+  --green-500:#1F6B3C;
+  --green-400:#2E8A50;
+  --green-300:#5FC081;
+  --green-tint:#11211800;
+  --green-wash:#101C15;
+
+  --brass-500:#A88B3E;
+  --brass-400:#C2A256;
+  --brass-300:#D8BE7E;
+  --brass-tint:#1B170E;
+
+  --ink:#0C0F0D;
+  --cream:#F3EEE2;
+
+  /* foreground */
+  --fg-strong:#F4F1E8;
+  --fg-1:#DAD6C9;
+  --fg-2:#9C9A8C;
+  --fg-3:#6E6D61;
+  --fg-disabled:#4C4B42;
+
+  /* lines */
+  --border:#262C26;
+  --border-subtle:#1C211C;
+  --border-strong:#343B33;
+
+  --warn:#C2A256; --warn-soft:#1B170E;
+
+  --font-sans:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,monospace;
+
+  --maxw:1140px;
+  --radius-sm:5px; --radius-md:8px; --radius-lg:12px; --radius-xl:16px; --radius-pill:999px;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.5);
+  --shadow-md:0 8px 26px rgba(0,0,0,.45);
+  --shadow-lg:0 24px 60px rgba(0,0,0,.55);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0; background:var(--bg-base); color:var(--fg-1);
+  font-family:var(--font-sans); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  letter-spacing:-.005em;}
+#root{min-height:100vh; position:relative; z-index:2;}
+::selection{background:var(--green-500); color:var(--cream);}
+img{max-width:100%; display:block;}
+
+a{color:var(--green-300); text-decoration:none;}
+a:hover{color:var(--green-400);}
+
+/* ---------- logo marks ---------- */
+.lm{display:none; line-height:0; width:100%;}
+.lm svg{display:block; width:100%; height:auto;}
+html[data-logo="peak"] .lm-peak{display:block;}
+html[data-logo="monogram"] .lm-monogram{display:block;}
+html[data-logo="crest"] .lm-crest{display:block;}
+html:not([data-logo]) .lm-crest{display:block;}
+.lm-onDark{--lm-bg:var(--green-500); --lm-fg:var(--cream);}
+.lm-onGreen{--lm-bg:var(--cream); --lm-fg:var(--green-600);}
+.lm-onInk{--lm-bg:var(--surface-3); --lm-fg:var(--green-300);}
+.brand{display:inline-flex; line-height:0;}
+
+/* ---------- crest emblem ---------- */
+.crest{display:inline-flex; line-height:0; width:100%;}
+.crest svg{display:block; width:100%; height:auto;}
+.cr-est{font-family:'Spectral',Georgia,serif; font-style:italic; font-weight:500; font-size:20px;}
+.cr-band-tx{font-family:'Spectral',Georgia,serif; font-weight:600; font-size:19px; letter-spacing:.03em;}
+.cr-onDark{--cr-line:var(--cream); --cr-bg:transparent; --cr-band:var(--green-500); --cr-bandtx:var(--cream); --cr-accent:var(--brass-300);}
+.cr-onCream{--cr-line:var(--green-700,#123) ; --cr-bg:var(--cream); --cr-band:var(--green-600); --cr-bandtx:var(--cream); --cr-accent:var(--green-600);}
+.cr-onGreen{--cr-line:var(--cream); --cr-bg:transparent; --cr-band:var(--cream); --cr-bandtx:var(--green-600); --cr-accent:var(--cream);}
+/* crest medallion sits inside the .lm system too */
+.lm-crest .cr-line{}
+
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:2px solid var(--green-300); outline-offset:2px; border-radius:var(--radius-sm);}
+
+image-slot{--is-bg:var(--surface-2); --is-border:var(--border); --is-fg:var(--fg-3);}
+
+@media(max-width:980px){
+  .ga-hero-row{grid-template-columns:1fr !important;}
+  .ga-2col{grid-template-columns:1fr !important;}
+}
+@media(max-width:760px){
+  .ga-nav{flex-wrap:wrap; gap:2px;}
+}

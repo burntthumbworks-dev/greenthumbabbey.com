@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>All Mods — Greenthumb Abbey</title>
+  <meta name="description" content="Detailed guides, controls, and Steam Workshop links for Project Zomboid and RimWorld mods by His Grace The Duke of Errol, The Dude of Greenthumb Abbey.">
+  <meta name="theme-color" content="#0C0F0D">
+  <link rel="icon" href="assets/ga-coin.png" type="image/png">
+  <link rel="stylesheet" href="css/ga-site.css">
+  <link rel="stylesheet" href="css/ga-layout.css">
+  <link rel="stylesheet" href="css/ga-mods.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="ga-header">
+    <div class="wrap ga-header__in">
+      <a class="ga-brand" href="index.html" aria-label="Greenthumb Abbey — home">
+        <img class="ga-coin" src="assets/ga-coin.png" alt="" width="34" height="34">
+        <span>
+          <span class="ga-brand__name">Greenthumb Abbey</span>
+          <span class="ga-brand__sub">Mods &amp; Fun Projects</span>
+        </span>
+      </a>
+      <button class="ga-nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <nav class="ga-nav" id="primary-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="mods.html" aria-current="page">Mods</a>
+        <a href="index.html#workshops">Game Lanes</a>
+        <a href="about.html">About</a>
+        <span class="ga-nav__cta">
+          <a class="ga-btn ga-btn--secondary ga-btn--sm" href="https://burntthumbworks.com/" target="_blank" rel="noopener">Burnt Thumb Works</a>
+        </span>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="ga-section">
+      <div class="wrap ga-section__in">
+        <div class="ga-section__head">
+          <div class="ga-section__head-copy">
+            <p class="ga-eyebrow">Workshop Catalog</p>
+            <h1 class="ga-h2" style="font-size:clamp(30px,4vw,44px);">Every mod, mechanics breakdown, and control sheet.</h1>
+            <p class="ga-lede">Built for Project Zomboid (Build 41 &amp; 42) and RimWorld (1.5–1.7) by <strong>His Grace The Duke of Errol, The Dude of Greenthumb Abbey</strong>.</p>
+          </div>
+        </div>
+
+        <div class="ga-filters" role="group" aria-label="Filter mod details by game">
+          <button class="ga-filter-btn is-active" type="button" data-filter="all">All Mods (3)</button>
+          <button class="ga-filter-btn" type="button" data-filter="pz">Project Zomboid (2)</button>
+          <button class="ga-filter-btn" type="button" data-filter="rimworld">RimWorld (1)</button>
+        </div>
+
+        <!-- MOD 1: THE IMMORTAL GAME -->
+        <article class="ga-mod-detail" id="immortal-game" data-game="pz">
+          <div class="ga-mod-detail__hero">
+            <div class="ga-mod-detail__art">
+              <img src="assets/mods/the-immortal-game-poster.png" alt="There Can Be Only One: The Knox Gathering">
+            </div>
+            <div>
+              <div class="ga-card__meta" style="justify-content:flex-start;">
+                <span class="ga-status ga-status--wip">Alpha WIP</span>
+                <span class="ga-chip">Project Zomboid · B41 &amp; B42</span>
+                <span class="ga-chip">Workshop ID: 3838755002</span>
+              </div>
+              <h2 class="ga-h2" style="margin-top:8px;">There Can Be Only One: The Knox Gathering</h2>
+              <p class="ga-lede">
+                July 1993. Jacob Kell weaponized the Knox plague to isolate North America and force <strong>The Gathering</strong> early. You start as an ordinary mortal survivor—no starter superpowers—until First Death ignites the Quickening.
+              </p>
+              <div class="ga-hero__actions" style="margin-top:20px;">
+                <a class="ga-btn ga-btn--primary" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3838755002" target="_blank" rel="noopener">Open on Steam Workshop</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="ga-mod-detail__body" style="border-bottom:1px solid var(--border-subtle); display:block;">
+            <div class="ga-banner-strip" style="margin-bottom:0;">
+              <img src="assets/mods/the-immortal-game-banner.png" alt="The Knox Gathering banner">
+            </div>
+          </div>
+
+          <div class="ga-mod-detail__body">
+            <div class="ga-mod-detail__col">
+              <h3>Core Rules &amp; Canon</h3>
+              <ul>
+                <li><strong>True Blind-Start:</strong> Hidden HUD, silent Buzz, and inert hotkeys until First Death (<code>&lt;= 12%</code> HP trauma or terminal Knox infection <code>&gt;= 85%</code>).</li>
+                <li><strong>Temporary vs. Permanent Death:</strong> Critical trauma triggers 15–45 in-game minutes of unconscious Quickening recovery; lose your head in a duel or let 3+ zombies feed on your head/neck and it&rsquo;s permanent.</li>
+                <li><strong>July 1993 Roster:</strong> Kurgan &amp; Ram&iacute;rez exist only as rare relic weapons; meet allies (Duncan, Connor, Amanda, Methos, Richie) and hunt 6 villains before Jacob Kell.</li>
+                <li><strong>Holy Ground:</strong> Churches and cemeteries block duels and Quickening powers.</li>
+              </ul>
+            </div>
+            <div class="ga-mod-detail__col">
+              <h3>4-Tier Powers &amp; Controls</h3>
+              <ul>
+                <li><strong>Tier 1 (First Death):</strong> <em>The Buzz</em> 60-tile sense, wound regeneration, +30 carry weight, permanent Knox Virus immunity.</li>
+                <li><strong>Tier 2 <span class="ga-kbd">Z</span>:</strong> <em>Highlander Quickstep</em> kinetic dash &amp; zombie stagger (1 Quickening or Blade Lv. 4).</li>
+                <li><strong>Tier 3 <span class="ga-kbd">C</span>:</strong> <em>Edge of Eternity</em> 12s lightning blade imbuement, +220% damage, +45% decapitation (3 Quickenings or Blade Lv. 7).</li>
+                <li><strong>Tier 4 <span class="ga-kbd">X</span>:</strong> <em>The Gathering</em> 360&deg; lightning shockwave (5 Quickenings or Blade Lv. 9).</li>
+                <li><strong>Dev / Testing <span class="ga-kbd">F9</span>:</strong> Toggle <code>[DEV] Immortal Debug</code> anytime without <code>-debug</code>.</li>
+              </ul>
+            </div>
+            <div class="ga-mod-detail__col">
+              <h3>Sanctuary &amp; Watchers</h3>
+              <ul>
+                <li><strong>MacLeod&rsquo;s Antique Store</strong> (<code>X: 12640, Y: 1840</code>): Louisville ally sanctuary guided by The Buzz at 5+ Quickenings; awards store key, Antique Forged Katana, +2000 Long Blade XP, and full healing.</li>
+                <li><strong>3 Watcher Listening Posts:</strong> Louisville (<code>12580, 1650</code>), Muldraugh (<code>10630, 10180</code>), and West Point (<code>11920, 6860</code>).</li>
+                <li><strong>Endgame Victory:</strong> Defeat Jacob Kell to claim <em>The Prize</em> with optional victory screen (click OK to keep playing).</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- MOD 2: DIVINE CHEATS -->
+        <article class="ga-mod-detail" id="divine-cheats" data-game="pz">
+          <div class="ga-mod-detail__hero">
+            <div class="ga-mod-detail__art">
+              <img src="assets/mods/divine-cheats-poster.png" alt="Divine Cheats &amp; Vehicle Suite">
+            </div>
+            <div>
+              <div class="ga-card__meta" style="justify-content:flex-start;">
+                <span class="ga-status ga-status--active">Active</span>
+                <span class="ga-chip">Project Zomboid · B41 &amp; B42</span>
+                <span class="ga-chip">Workshop ID: 3838755214</span>
+              </div>
+              <h2 class="ga-h2" style="margin-top:8px;">Divine Cheats &amp; Vehicle Suite</h2>
+              <p class="ga-lede">
+                Standalone sandbox debug, player god-tools, and full vehicle workshop suite built cleanly for both Build 41 and Build 42 (using native B42 <code>CharacterStat</code> APIs—no <code>-debug</code> launch flags needed).
+              </p>
+              <div class="ga-hero__actions" style="margin-top:20px;">
+                <a class="ga-btn ga-btn--primary" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3838755214" target="_blank" rel="noopener">Open on Steam Workshop</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="ga-mod-detail__body">
+            <div class="ga-mod-detail__col">
+              <h3>Vehicle Workshop</h3>
+              <ul>
+                <li><strong>Full Vehicle Repair:</strong> Restores engine, body, doors, windows, tires, battery, gas tank, locks, armor plates, roof racks, and bullbars to 100%.</li>
+                <li><strong>Instant Hotwire, Keys &amp; Refuel:</strong> Start any ride immediately or spawn a matching ignition key.</li>
+                <li><strong>Vehicle God Mode:</strong> Keeps engine and parts invulnerable to zombie hits and collisions.</li>
+                <li><strong>All-Pack Spawner:</strong> Paginated spawner scanning Vanilla, Filibuster Rhymes, Autotsar (ATA), KI5, and custom vehicle packs.</li>
+              </ul>
+            </div>
+            <div class="ga-mod-detail__col">
+              <h3>Player &amp; Progression</h3>
+              <ul>
+                <li><strong>God Mode &amp; Full Heal:</strong> Invulnerability, grab break, and instant Knox Virus / wound purge.</li>
+                <li><strong>Infinite Carry Weight:</strong> Boosts capacity to 10,000 and cleanly restores base weight when toggled off.</li>
+                <li><strong>Ghost Mode &amp; Instant Actions:</strong> Zombies ignore you; 1-tick crafting, building, reading, and transfers.</li>
+                <li><strong>Death Aura:</strong> Vaporizes zombies within 6 tiles.</li>
+                <li><strong>Max Skills &amp; Learn All Recipes:</strong> Level 10 perks + full B42 <code>CraftRecipes</code> unlock.</li>
+              </ul>
+            </div>
+            <div class="ga-mod-detail__col">
+              <h3>Kits, World &amp; Travel</h3>
+              <ul>
+                <li><strong>5 Curated Supply Kits:</strong> Survivalist Heavy Tools, Trauma Medical, Firearms Armory (matching mags + ammo), Mechanic &amp; Builder, Farming &amp; Camping.</li>
+                <li><strong>World Tools:</strong> Spawn 1 test zombie, mini horde (10), or clear zombies within 35 tiles.</li>
+                <li><strong>Quick Travel:</strong> Safe landmark teleport across Muldraugh, Rosewood, Riverside, West Point, March Ridge, Central Louisville, and the Military Checkpoint.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- MOD 3: AN AMERICAN IN CAMELOT -->
+        <article class="ga-mod-detail" id="american-in-camelot" data-game="rimworld" style="margin-bottom:0;">
+          <div class="ga-mod-detail__hero">
+            <div class="ga-mod-detail__art">
+              <img src="assets/mods/an-american-in-camelot-preview.png" alt="An American in Camelot">
+            </div>
+            <div>
+              <div class="ga-card__meta" style="justify-content:flex-start;">
+                <span class="ga-status ga-status--active">Local Build</span>
+                <span class="ga-chip">RimWorld · 1.5 / 1.6 / 1.7</span>
+                <span class="ga-chip">Requires Harmony</span>
+              </div>
+              <h2 class="ga-h2" style="margin-top:8px;">An American in Camelot</h2>
+              <p class="ga-lede">
+                Keep the entire RimWorld planet locked in the Medieval era while your own colony researches and builds all the way to Ultra and Archotech—with one secretive Shattered Empire outpost watching from afar.
+              </p>
+            </div>
+          </div>
+
+          <div class="ga-mod-detail__body">
+            <div class="ga-mod-detail__col">
+              <h3>Tech Asymmetry</h3>
+              <ul>
+                <li><strong>Zero Player Tech Caps:</strong> Your faction advances freely from Neolithic and Medieval into Industrial, Spacer, and Ultra tech.</li>
+                <li><strong>Medieval NPC Cap:</strong> All NPC factions, pawn gear, and non-Empire world loot stay grounded at Medieval tech.</li>
+              </ul>
+            </div>
+            <div class="ga-mod-detail__col">
+              <h3>Shattered Empire Rules</h3>
+              <ul>
+                <li><strong>Lone Outpost:</strong> Restricts the Shattered Empire (Royalty) to a single settlement on the whole planet.</li>
+                <li><strong>Player-Only Diplomacy:</strong> Permanently neutral with all NPC factions; trades and sends Royal Tribute Collectors exclusively to you.</li>
+              </ul>
+            </div>
+            <div class="ga-mod-detail__col">
+              <h3>Compatibility</h3>
+              <ul>
+                <li><strong>Non-Destructive Harmony:</strong> Never deletes XML Defs at load time.</li>
+                <li><strong>Works With:</strong> Standalone vanilla + all DLCs, or alongside <em>World Tech Level</em>, <em>Medieval Overhaul</em>, and <em>Vanilla Factions Expanded &ndash; Medieval 2</em>.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ga-footer">
+    <div class="wrap ga-footer__grid">
+      <div>
+        <div class="ga-footer__brand">
+          <img class="ga-coin" src="assets/ga-coin.png" alt="" width="28" height="28">
+          <span>Greenthumb Abbey</span>
+        </div>
+        <p class="ga-footer__blurb">Mods, overhauls, and fun projects created by <strong>His Grace The Duke of Errol, The Dude of Greenthumb Abbey</strong>.</p>
+      </div>
+      <div class="ga-footer__col">
+        <h2 class="ga-footer__h">Pages</h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="mods.html">All Mods</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="ga-footer__col">
+        <h2 class="ga-footer__h">Workshop &amp; Studio</h2>
+        <ul>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3838755002" target="_blank" rel="noopener">The Immortal Game (Workshop)</a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3838755214" target="_blank" rel="noopener">Divine Cheats (Workshop)</a></li>
+          <li><a href="https://burntthumbworks.com/" target="_blank" rel="noopener">Burnt Thumb Works</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap ga-footer__bar">
+      <span>&copy; <span data-year>2026</span> Greenthumb Abbey · His Grace The Duke of Errol, The Dude of Greenthumb Abbey</span>
+      <span>Free community mods · Zero paywalls</span>
+    </div>
+  </footer>
+
+  <script src="js/mods.js"></script>
+</body>
+</html>
