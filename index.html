@@ -1,27 +1,499 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Greenthumb Abbey — Coming Soon</title>
-  <meta name="description" content="Greenthumb Abbey — Mods & Odd Projects by His Grace The Duke of Errol, The Dude of Greenthumb Abbey.">
-  <meta name="theme-color" content="#F0E4C7">
+  <title>Greenthumb Abbey â€” Mods, Workshop &amp; Curiosities</title>
+  <meta name="description" content="Creator profile and mod showcase for Project Zomboid, RimWorld, and custom living-room contraptions by His Grace the Duke of Errol a Dude of Greenthumb Abbey.">
+  <meta name="theme-color" content="#21190F">
   <link rel="icon" href="assets/ga-coin.png" type="image/png">
-  <link rel="stylesheet" href="css/site.css">
+  <style>
+    :root {
+      --parchment: #F0E4C7;
+      --parchment-hi: #FBF4E1;
+      --parchment-lo: #E5D4AE;
+      --walnut: #21190F;
+      --walnut-hi: #2E2315;
+      --ink: #211A0E;
+      --ink-soft: #5A4A33;
+      --brass: #B98C2E;
+      --brass-hi: #DBBE78;
+      --moss: #24472C;
+      --moss-hi: #14532D;
+      --border: #C4AD82;
+      --font-serif: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% 24%, var(--parchment-hi) 0%, var(--parchment) 58%, var(--parchment-lo) 100%);
+      color: var(--ink);
+      font-family: var(--font-serif);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .055;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .sans { font-family: var(--font-sans); }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 22px; position: relative; z-index: 1; }
+
+    /* Walnut Sticky Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: linear-gradient(180deg, var(--walnut-hi) 0%, var(--walnut) 100%);
+      border-bottom: 2px solid var(--brass);
+      box-shadow: 0 8px 26px rgba(24, 17, 7, 0.28);
+    }
+    .header-in {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 0;
+    }
+    .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: #F7EED7; }
+    .brand img { width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--brass-hi); }
+    .brand-name { font-size: 19px; font-weight: 700; letter-spacing: 0.02em; display: block; }
+    .brand-sub { font-size: 10px; color: var(--brass-hi); text-transform: uppercase; letter-spacing: 0.16em; display: block; }
+    nav { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+    nav a {
+      text-decoration: none;
+      color: #E3D6B8;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+    }
+    nav a:hover { color: #FFF9EB; border-color: rgba(219, 190, 120, 0.45); background: rgba(255,255,255,0.06); }
+    nav a.portal-tab {
+      background: rgba(36, 71, 44, 0.85);
+      border-color: var(--brass);
+      color: #EBF7DF;
+    }
+    nav a.portal-tab:hover { background: var(--moss); color: #fff; }
+
+    /* Bookplate Hero Crest */
+    .hero { padding: 38px 0 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+    .plate {
+      position: relative;
+      width: min(92vw, 720px);
+      padding: clamp(14px, 2.4vw, 28px);
+      background: radial-gradient(120% 120% at 50% 35%, #FDF9EE 0%, #F4E8CC 72%, #EAD9B3 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 20px 48px rgba(38, 27, 11, 0.16), inset 0 1px 0 rgba(255, 252, 243, 0.85);
+    }
+    .plate::after {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 1px solid rgba(185, 140, 46, 0.48);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+    .plate img {
+      width: 100%;
+      max-height: 310px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      mix-blend-mode: multiply;
+    }
+    .hero-banner {
+      max-width: 780px;
+      background: linear-gradient(180deg, var(--walnut-hi) 0%, var(--walnut) 100%);
+      border: 1px solid #5A4A2A;
+      border-radius: 12px;
+      padding: 20px 28px;
+      color: #F4EAD5;
+      box-shadow: 0 14px 32px rgba(24, 17, 7, 0.22);
+    }
+    .kicker {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--brass-hi);
+      border-bottom: 1px solid rgba(219, 190, 120, 0.35);
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+    .hero-banner h1 { font-size: clamp(22px, 3.2vw, 32px); font-weight: 600; margin-bottom: 8px; }
+    .hero-banner p { font-size: 14px; color: #D5C8AA; }
+
+    .ribbon-divider {
+      display: block;
+      width: min(360px, 75%);
+      margin: 10px auto 4px;
+      opacity: 0.72;
+      mix-blend-mode: multiply;
+    }
+
+    /* Section Headings */
+    section.wing { padding: 30px 0; }
+    .wing-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1.5px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+    .wing-title-wrap { display: flex; align-items: center; gap: 14px; }
+    .wing-ornament { width: 54px; height: 54px; object-fit: contain; mix-blend-mode: multiply; }
+    .wing-head h2 { font-size: 28px; color: var(--ink); line-height: 1.15; }
+    .wing-head .sub { font-size: 13px; color: var(--ink-soft); }
+    .wing-badge {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--moss);
+      color: #F4EAD5;
+      border: 1px solid var(--brass);
+    }
+
+    /* Illuminated Mod Folio Cards */
+    .folio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 20px;
+    }
+    .folio {
+      position: relative;
+      background: linear-gradient(170deg, #FDF9EE 0%, #F3E6C8 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 10px 26px rgba(38, 27, 11, 0.1), inset 0 1px 0 rgba(255, 253, 246, 0.9);
+      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+    .folio:hover { transform: translateY(-4px); border-color: var(--brass); box-shadow: 0 16px 34px rgba(38, 27, 11, 0.18); }
+    .folio-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .folio-tag {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(36, 71, 44, 0.12);
+      color: var(--moss);
+      border: 1px solid rgba(36, 71, 44, 0.3);
+    }
+    .folio-id { font-size: 11px; color: var(--ink-soft); font-weight: 700; }
+    .folio h3 { font-size: 21px; color: var(--ink); line-height: 1.2; }
+    .folio p { font-size: 14px; color: var(--ink-soft); }
+    .folio ul { padding-left: 18px; font-size: 13px; color: #3D3120; display: flex; flex-direction: column; gap: 5px; margin-bottom: 6px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      align-self: flex-start;
+      margin-top: auto;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--walnut-hi), var(--walnut));
+      color: var(--brass-hi);
+      border: 1px solid var(--brass);
+      transition: transform 0.12s ease, background 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); background: var(--moss); color: #fff; }
+    .btn-moss { background: linear-gradient(180deg, #2d5937, var(--moss)); color: #F7F1E1; }
+
+    /* RetroMaster 3000 Walnut & Emerald Showcase Plate */
+    .contraption {
+      background: linear-gradient(160deg, var(--walnut-hi) 0%, #161009 100%);
+      border: 2px solid var(--brass);
+      border-radius: 18px;
+      padding: 28px;
+      color: #F4EAD5;
+      box-shadow: 0 18px 42px rgba(24, 17, 7, 0.28);
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .contraption h2 { font-size: 28px; color: var(--brass-hi); margin: 8px 0; }
+    .contraption p { font-size: 14px; color: #D5C8AA; margin-bottom: 14px; }
+    .spec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(185, 140, 46, 0.35);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .spec strong { display: block; color: var(--brass-hi); font-size: 15px; }
+    .spec span { font-size: 12px; color: #C5B796; }
+    .lock-note { font-size: 12px; color: #AFA07E; margin-top: 10px; }
+
+    footer {
+      margin-top: 42px;
+      background: linear-gradient(180deg, var(--walnut-hi), var(--walnut));
+      border-top: 2px solid var(--brass);
+      padding: 26px 0 36px;
+      color: #CBBE9F;
+      font-size: 13px;
+    }
+    .footer-in { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+    footer a { color: var(--brass-hi); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 780px) { .contraption { grid-template-columns: 1fr; padding: 22px; } }
+  </style>
 </head>
 <body>
-  <main class="stage">
-    <div class="plate">
-      <img src="assets/ga-logo.png" alt="Greenthumb Abbey crest" width="1536" height="1024">
+  <header>
+    <div class="wrap header-in">
+      <a class="brand" href="index.html">
+        <img src="assets/ga-coin.png" alt="Greenthumb Abbey Seal">
+        <span>
+          <span class="brand-name">Greenthumb Abbey</span>
+          <span class="brand-sub sans">Mods &amp; Curiosities</span>
+        </span>
+      </a>
+      <nav class="sans" aria-label="Primary">
+        <a href="#zomboid">Project Zomboid</a>
+        <a href="#rimworld">RimWorld</a>
+        <a href="#contraptions">RetroMaster 3000</a>
+        <a class="portal-tab" href="https://play.greenthumbabbey.com">ðŸ”’ Family Portal</a>
+      </nav>
     </div>
-    <section class="banner" aria-label="Coming soon">
-      <p class="banner__kicker">Coming Soon</p>
-      <h1 class="banner__title">Mods &amp; Odd Projects</h1>
-      <p class="banner__meta">
-        His Grace The Duke of Errol, The Dude of Greenthumb Abbey &middot;
-        <a href="https://burntthumbworks.com/" target="_blank" rel="noopener">Burnt Thumb Works</a>
-      </p>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="plate">
+        <img src="assets/ga-logo.png" alt="Greenthumb Abbey Engraved Crest">
+      </div>
+      <div class="hero-banner">
+        <div class="kicker sans">The Abbey Workshop Â· For Funsies</div>
+        <h1>Mods, Sandboxes &amp; Midnight Contraptions</h1>
+        <p class="sans">
+          Curated by <strong>His Grace the Duke of Errol a Dude of Greenthumb Abbey</strong> â€”
+          live Steam Workshop overhauls for <strong>Project Zomboid</strong> and <strong>RimWorld</strong>,
+          plus eccentric home-console tinkering.
+        </p>
+      </div>
+      <img class="ribbon-divider" src="assets/ornaments/manuscript-border-ribbon.png" alt="">
+    </section>
+
+    <!-- PROJECT ZOMBOID WING -->
+    <section class="wing" id="zomboid">
+      <div class="wing-head">
+        <div class="wing-title-wrap">
+          <img class="wing-ornament" src="assets/ornaments/heraldic-lion-rampant.png" alt="">
+          <div>
+            <h2>Project Zomboid Mods</h2>
+            <div class="sub sans">Build 41 &amp; Build 42 Dual-Tree Parity Â· Live on Steam Workshop</div>
+          </div>
+        </div>
+        <span class="wing-badge sans">3 Live Mods</span>
+      </div>
+
+      <div class="folio-grid">
+        <article class="folio">
+          <div class="folio-top sans">
+            <span class="folio-tag">v0.2.0 Â· SP &amp; MP PvP/Co-op</span>
+            <span class="folio-id">Workshop #3838755002</span>
+          </div>
+          <h3>There Can Be Only One: The Knox Gathering</h3>
+          <p>Highlander meets Project Zomboid. Start mortal until First Death or terminal Knox infection awakens Immortality, or pick from 6 Premade Highlanders.</p>
+          <ul class="sans">
+            <li>Multiplayer <em>The Buzz</em> player radar &amp; blackout danger HUD</li>
+            <li>PvP blade beheading, Quickening theft &amp; Co-op toggle</li>
+            <li>Holy Ground Sanctuary PvP shield + Watcher Field Journals</li>
+            <li>Zombie-kill tier leveling (50/250/600) with Quickstep, Blade Imbue &amp; Shockwave</li>
+          </ul>
+          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3838755002" target="_blank" rel="noopener">View on Steam Workshop â†’</a>
+        </article>
+
+        <article class="folio">
+          <div class="folio-top sans">
+            <span class="folio-tag">v0.4.0 Â· 4-Phase Apocalypse</span>
+            <span class="folio-id">Workshop #3841679897</span>
+          </div>
+          <h3>The Breaking: First Age Collapse</h3>
+          <p>A grounded, zero-magic 4-phase apocalypse imagining the July 1993 Knox Event as the opening of the Bore and the start of the Breaking of the World.</p>
+          <ul class="sans">
+            <li><strong>Phase 1:</strong> The Whispering â€” normal 1993 Knox (guns, cars &amp; power work)</li>
+            <li><strong>Phase 2:</strong> The Turning â€” Sprinters, storm brownouts &amp; fouled outdoor water</li>
+            <li><strong>Phase 3:</strong> The Grid Fails â€” permanent hydro shutoff &amp; perpetual Blighted Dusk</li>
+            <li><strong>Phase 4:</strong> The Breaking â€” 72h+ endless night</li>
+          </ul>
+          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3841679897" target="_blank" rel="noopener">View on Steam Workshop â†’</a>
+        </article>
+
+        <article class="folio">
+          <div class="folio-top sans">
+            <span class="folio-tag">Utility Â· Build 41 &amp; 42</span>
+            <span class="folio-id">Workshop #3838755214</span>
+          </div>
+          <h3>Divine Cheats &amp; Vehicle Suite</h3>
+          <p>Right-click sandbox utility and vehicle spawner/repair suite built for rapid mod testing and chaotic solo runs.</p>
+          <ul class="sans">
+            <li>Full vehicle repair, 100% fuel, hotwire/key, god mode &amp; all-pack spawner</li>
+            <li>God/ghost mode, death aura, heal/purge Knox virus &amp; max skills</li>
+            <li>5 supply kits, zombie spawner/clearer &amp; quick travel</li>
+          </ul>
+          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3838755214" target="_blank" rel="noopener">View on Steam Workshop â†’</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- RIMWORLD WING -->
+    <section class="wing" id="rimworld">
+      <div class="wing-head">
+        <div class="wing-title-wrap">
+          <img class="wing-ornament" src="assets/ornaments/heraldic-stag.png" alt="">
+          <div>
+            <h2>RimWorld Mods</h2>
+            <div class="sub sans">RimWorld 1.6 &amp; 1.7 Â· The Wheel of Time Overhaul Suite &amp; Arthurian Chaos</div>
+          </div>
+        </div>
+        <span class="wing-badge sans">4 Live + 1 In Forge</span>
+      </div>
+
+      <div class="folio-grid">
+        <article class="folio">
+          <div class="folio-top sans">
+            <span class="folio-tag">Core Framework</span>
+            <span class="folio-id">Workshop #3841678752</span>
+          </div>
+          <h3>Wheel of Time: Core (The Wheel Turns)</h3>
+          <p>Core metaphysical framework bringing the One Power and canonical Randland geography to RimWorld.</p>
+          <ul class="sans">
+            <li>Split <em>Saidin</em> vs <em>Saidar</em> weaves, Five Powers, Taint, Linking &amp; <em>Angreal</em></li>
+            <li>The True Power, Wolfbrother &amp; <em>Tel'aran'rhiod</em>, Ogier Treesinging</li>
+            <li>Canonical Randland &amp; Aiel Waste 3D globe map (47 cities, 12 rivers)</li>
+          </ul>
+          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3841678752" target="_blank" rel="noopener">View on Steam Workshop â†’</a>
+        </article>
+
+        <article class="folio">
+          <div class="folio-top sans">
+            <span class="folio-tag">Factions &amp; Royalty</span>
+            <span class="folio-id">Workshop #3841678913</span>
+          </div>
+          <h3>Wheel of Time: Nations &amp; Towers</h3>
+          <p>Adds the major nations, towers, and orders of the Wheel of Time, including Seanchan Imperial Return Royalty integration.</p>
+          <ul class="sans">
+            <li>White Tower (Aes Sedai &amp; Warders), Black Tower (Asha'man), Andor &amp; Two Rivers</li>
+            <li>Aiel (Wise Ones &amp; <em>Ji'e'toh</em>), Children of the Light &amp; Ogier <em>Stedding</em></li>
+            <li>Seanchan <em>Corenne</em> Royalty Empire, <em>Sul'dam</em> &amp; <em>Damane</em></li>
+          </ul>
+          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3841678913" target="_blank" rel="noopener">View on Steam Workshop â†’</a>
+        </article>
+
+        <article class="folio">
+          <div class="folio-top sans">
+            <span class="folio-tag">Standalone Faction</span>
+            <span class="folio-id">Workshop #3841678962</span>
+          </div>
+          <h3>Wheel of Time: The Shadow &amp; The Blight</h3>
+          <p>Standalone Shadowspawn threat mod (requires only Harmony) unleashing the forces of the Blight on any RimWorld colony.</p>
+          <ul class="sans">
+            <li>5 Trolloc beast-tribes with custom directional beast-heads</li>
+            <li>Myrddraal (Shadow Step &amp; Death Thrash), Draghkar &amp; Darkhounds</li>
+            <li>Stealth Gray Men &amp; Weave-immune Gholam + Foxhead Medallion counter</li>
+          </ul>
+          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3841678962" target="_blank" rel="noopener">View on Steam Workshop â†’</a>
+        </article>
+
+        <article class="folio">
+          <div class="folio-top sans">
+            <span class="folio-tag">Visual &amp; UI Makeover</span>
+            <span class="folio-id">Workshop #3841679116</span>
+          </div>
+          <h3>Wheel of Time: Visual &amp; UI Makeover</h3>
+          <p>Complete visual, architectural, VFX, and UI overhaul tying the entire Wheel of Time suite together.</p>
+          <ul class="sans">
+            <li>Custom WoT apparel, armor, Heron-marked blades &amp; Two Rivers longbows</li>
+            <li>White Tower &amp; Stedding architectural styling</li>
+            <li>Colored One Power weave VFX</li>
+          </ul>
+          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3841679116" target="_blank" rel="noopener">View on Steam Workshop â†’</a>
+        </article>
+
+        <article class="folio">
+          <div class="folio-top sans">
+            <span class="folio-tag">RimWorld 1.5â€“1.7 Â· Local Forge</span>
+            <span class="folio-id">Coming to Workshop</span>
+          </div>
+          <h3>An American in Camelot</h3>
+          <p>Anachronistic RimWorld scenario locking NPC factions and equipment into medieval Arthurian tech while your colony brings questionable modern bravado to the table.</p>
+          <ul class="sans">
+            <li>Medieval-locked NPC world &amp; pawn loadouts</li>
+            <li>Custom Boneworks RimWorld experiment in active testing</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- RETROMASTER 3000 SHOWCASE -->
+    <section class="wing" id="contraptions">
+      <div class="contraption">
+        <div>
+          <span class="kicker sans">Abbey Contraption Â· Showcase Only</span>
+          <h2>RetroMaster 3000</h2>
+          <p class="sans">
+            A custom 2001 Original Xbox-inspired 3D rotating console dashboard and Android / Fire TV APK built for living-room game nights â€”
+            chronological 1985â€“2013 console hub, 4-player modern Xbox/PlayStation/Backbone Bluetooth controller bridge, Wikipedia Wayback archives, and cross-device Auto-Save.
+          </p>
+          <a class="btn btn-moss sans" href="https://play.greenthumbabbey.com">ðŸ”’ Family Portal Login (Cloudflare)</a>
+          <p class="lock-note sans">
+            <strong>Private Family Vault:</strong> Public visitors may admire the project showcase; live access is locked behind Cloudflare Access for authorized family Gmail accounts only.
+          </p>
+        </div>
+        <div class="spec-grid sans">
+          <div class="spec"><strong>3D Roto-Dial</strong><span>2001 Xbox emerald orb &amp; rotating 3D menus</span></div>
+          <div class="spec"><strong>4-Player Native</strong><span>Fire TV / Google TV / PC Bluetooth controller bridge</span></div>
+          <div class="spec"><strong>Wayback Archive</strong><span>Chronological metadata, box art &amp; Wiki blurbs</span></div>
+          <div class="spec"><strong>Auto-Save</strong><span>Resumes seamlessly across TV, PC &amp; phone</span></div>
+        </div>
+      </div>
     </section>
   </main>
+
+  <footer class="sans">
+    <div class="wrap footer-in">
+      <span>Curated by <strong>His Grace the Duke of Errol a Dude of Greenthumb Abbey</strong></span>
+      <span>
+        <a href="https://play.greenthumbabbey.com">Family Portal</a> Â
+      </span>
+    </div>
+  </footer>
 </body>
 </html>
+
