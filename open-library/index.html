@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#111216" />
+  <meta name="description" content="A cross-device Progressive Web App for browsing, saving, and reading books from the Internet Archive's Open Library on phone, tablet, laptop, and TV." />
+  <title>Open Library Lounge</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="./icons/icon.svg" />
+  <link rel="apple-touch-icon" href="./icons/icon.svg" />
+  <link rel="stylesheet" href="./styles.css?v=3" />
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Desktop / Tablet Sidebar Navigation -->
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="brand">
+        <img src="./icons/icon.svg" alt="" class="brand-icon" width="36" height="36" />
+        <div>
+          <h1 class="brand-title">Open Library</h1>
+          <p class="brand-subtitle">Cross-Device Lounge</p>
+        </div>
+      </div>
+
+      <nav class="nav-list">
+        <button class="nav-btn active" data-view="discover" data-focusable="true">
+          <span class="nav-icon" aria-hidden="true">✦</span>
+          <span>Discover</span>
+        </button>
+        <button class="nav-btn" data-view="search" data-focusable="true">
+          <span class="nav-icon" aria-hidden="true">⌕</span>
+          <span>Search</span>
+        </button>
+        <button class="nav-btn" data-view="shelf" data-focusable="true">
+          <span class="nav-icon" aria-hidden="true">▤</span>
+          <span>My Shelf</span>
+          <span class="badge-count" id="sidebarShelfCount">0</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">Quick Subjects</p>
+        <div class="subject-links" id="sidebarSubjects"></div>
+      </div>
+
+      <div class="sidebar-footer">
+        <button class="control-pill" id="btnInstallPwa" hidden data-focusable="true">
+          <span>⬇ Install App</span>
+        </button>
+        <button class="control-pill" id="btnTvMode" aria-pressed="false" data-focusable="true" title="Toggle 10-foot TV & Remote Mode (T)">
+          <span>📺 TV Mode: <strong id="tvModeLabel">Off</strong></span>
+        </button>
+        <button class="control-pill" id="btnTheme" aria-pressed="false" data-focusable="true" title="Switch Dark / Paper theme">
+          <span>◐ Theme: <strong id="themeLabel">Evening</strong></span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <div class="main-column">
+      <header class="topbar">
+        <form class="search-bar" id="globalSearchForm" role="search">
+          <label for="searchInput" class="sr-only">Search books, authors, or subjects</label>
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Search books, authors, ISBN, or subjects… (press /)"
+            autocomplete="off"
+            data-focusable="true"
+          />
+          <button type="submit" class="btn-primary btn-compact" data-focusable="true">Search</button>
+        </form>
+
+        <div class="topbar-actions">
+          <div class="segmented-filter" id="accessFilterGroup" role="group" aria-label="Filter by book access">
+            <button type="button" class="seg-btn active" data-access="all" data-focusable="true">All</button>
+            <button type="button" class="seg-btn" data-access="public" data-focusable="true">Read Free</button>
+            <button type="button" class="seg-btn" data-access="borrow" data-focusable="true">Borrow</button>
+          </div>
+          <button class="icon-btn mobile-only" id="btnTvModeMobile" aria-label="Toggle TV Mode" title="TV Mode" data-focusable="true">📺</button>
+          <button class="icon-btn mobile-only" id="btnThemeMobile" aria-label="Switch Theme" title="Switch Theme" data-focusable="true">◐</button>
+        </div>
+      </header>
+
+      <main class="content" id="mainContent" tabindex="-1">
+        <!-- DISCOVER VIEW -->
+        <section class="view active" id="view-discover" aria-labelledby="discoverHeading">
+          <div class="hero-banner">
+            <div class="hero-text">
+              <p class="eyebrow">Internet Archive · Open Library</p>
+              <h2 id="discoverHeading">Millions of books, one calm lounge.</h2>
+              <p class="hero-copy">
+                Browse trending reads, filter for instant public-domain books, keep a local bookshelf, or switch to TV Mode for remote-friendly browsing.
+              </p>
+              <div class="hero-actions">
+                <button class="btn-primary" id="btnHeroReadable" data-focusable="true">Browse Free Readable Classics</button>
+                <button class="btn-secondary" id="btnHeroTv" data-focusable="true">Try TV / Remote Mode</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="subject-strip" id="subjectChips" role="tablist" aria-label="Book subjects"></div>
+
+          <div class="section-header">
+            <h3 id="discoverGridTitle">Trending Today</h3>
+            <span class="section-meta" id="discoverMeta"></span>
+          </div>
+
+          <div class="book-grid" id="discoverGrid" aria-live="polite"></div>
+        </section>
+
+        <!-- SEARCH VIEW -->
+        <section class="view" id="view-search" aria-labelledby="searchHeading">
+          <div class="section-header">
+            <h2 id="searchHeading">Search Results</h2>
+            <span class="section-meta" id="searchMeta">Type a title, author, or topic above.</span>
+          </div>
+          <div class="book-grid" id="searchGrid" aria-live="polite"></div>
+          <div class="load-more-wrap" id="searchLoadMoreWrap" hidden>
+            <button class="btn-secondary" id="btnLoadMoreSearch" data-focusable="true">Load More Books</button>
+          </div>
+        </section>
+
+        <!-- MY SHELF VIEW -->
+        <section class="view" id="view-shelf" aria-labelledby="shelfHeading">
+          <div class="shelf-header-row">
+            <div>
+              <h2 id="shelfHeading">My Bookshelf</h2>
+              <p class="section-meta">Saved locally on this device. Export JSON anytime to sync across devices.</p>
+            </div>
+            <div class="shelf-io-actions">
+              <button class="btn-secondary btn-compact" id="btnExportShelf" data-focusable="true">Export JSON</button>
+              <label class="btn-secondary btn-compact file-btn" tabindex="0" data-focusable="true">
+                Import JSON
+                <input type="file" id="importShelfInput" accept="application/json,.json" hidden />
+              </label>
+            </div>
+          </div>
+
+          <div class="shelf-tabs" role="tablist" aria-label="Shelf categories">
+            <button class="tab-pill active" data-shelf="all" data-focusable="true">All Saved</button>
+            <button class="tab-pill" data-shelf="reading" data-focusable="true">Currently Reading</button>
+            <button class="tab-pill" data-shelf="want" data-focusable="true">Want to Read</button>
+            <button class="tab-pill" data-shelf="finished" data-focusable="true">Finished</button>
+            <button class="tab-pill" data-shelf="recent" data-focusable="true">Recently Viewed</button>
+          </div>
+
+          <div class="book-grid" id="shelfGrid" aria-live="polite"></div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span>Powered by the public <a href="https://openlibrary.org" target="_blank" rel="noopener noreferrer">Open Library</a> &amp; <a href="https://archive.org" target="_blank" rel="noopener noreferrer">Internet Archive</a> APIs.</span>
+        <span class="footer-hint">Keys: <code>/</code> Search · <code>T</code> TV Mode · Arrow keys navigate · <code>Esc</code> Close</span>
+      </footer>
+    </div>
+
+    <!-- Phone Bottom Navigation -->
+    <nav class="bottom-nav" aria-label="Mobile navigation">
+      <button class="bottom-nav-btn active" data-view="discover" data-focusable="true">
+        <span aria-hidden="true">✦</span>
+        <span>Discover</span>
+      </button>
+      <button class="bottom-nav-btn" data-view="search" data-focusable="true">
+        <span aria-hidden="true">⌕</span>
+        <span>Search</span>
+      </button>
+      <button class="bottom-nav-btn" data-view="shelf" data-focusable="true">
+        <span aria-hidden="true">▤</span>
+        <span>Shelf</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- BOOK DETAIL MODAL -->
+  <div class="modal-backdrop" id="bookModal" hidden role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button class="modal-close" id="btnCloseModal" aria-label="Close book details" data-focusable="true">✕</button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- FULLSCREEN IN-APP BOOKREADER OVERLAY -->
+  <div class="reader-overlay" id="readerOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="readerTitle">
+    <header class="reader-topbar">
+      <div class="reader-title-wrap">
+        <button class="btn-secondary btn-compact" id="btnCloseReader" data-focusable="true">← Back</button>
+        <h2 class="reader-title" id="readerTitle">Book Reader</h2>
+      </div>
+      <div class="reader-actions">
+        <a class="btn-secondary btn-compact" id="readerExternalLink" href="#" target="_blank" rel="noopener noreferrer" data-focusable="true">Open on Archive.org ↗</a>
+        <button class="btn-secondary btn-compact" id="btnReaderFullscreen" data-focusable="true">⛶ Fullscreen</button>
+      </div>
+    </header>
+    <div class="reader-stage">
+      <iframe
+        id="readerFrame"
+        title="Internet Archive BookReader"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script type="module" src="./js/app.js?v=3"></script>
+</body>
+</html>

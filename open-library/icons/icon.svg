@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Open Library Lounge Icon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1b1e26" />
+      <stop offset="100%" stop-color="#101216" />
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f2c47d" />
+      <stop offset="100%" stop-color="#d4903e" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)" />
+  <rect x="28" y="28" width="456" height="456" rx="92" fill="none" stroke="#e0a458" stroke-opacity="0.28" stroke-width="6" />
+  <!-- Open book pages -->
+  <path d="M112 164c48-22 102-18 144 12 42-30 96-34 144-12v196c-48-20-102-16-144 14-42-30-96-34-144-14V164z" fill="none" stroke="url(#gold)" stroke-width="22" stroke-linejoin="round" />
+  <line x1="256" y1="176" x2="256" y2="374" stroke="url(#gold)" stroke-width="18" stroke-linecap="round" />
+  <!-- Subtle page lines -->
+  <line x1="152" y1="224" x2="220" y2="232" stroke="#f3efe6" stroke-opacity="0.7" stroke-width="12" stroke-linecap="round" />
+  <line x1="152" y1="268" x2="220" y2="276" stroke="#f3efe6" stroke-opacity="0.5" stroke-width="12" stroke-linecap="round" />
+  <line x1="292" y1="232" x2="360" y2="224" stroke="#f3efe6" stroke-opacity="0.7" stroke-width="12" stroke-linecap="round" />
+  <line x1="292" y1="276" x2="360" y2="268" stroke="#f3efe6" stroke-opacity="0.5" stroke-width="12" stroke-linecap="round" />
+</svg>
