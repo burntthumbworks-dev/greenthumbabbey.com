@@ -7,7 +7,7 @@ import {
   getCoverUrl,
   getOpenLibraryWorkUrl,
   searchBooks
-} from './api.js?v=3';
+} from './api.js?v=4';
 import {
   exportLibraryJson,
   getPrefs,
