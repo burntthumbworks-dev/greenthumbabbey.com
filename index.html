@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>/* GTA login gate (head) */(function(){try{var p=location.pathname.toLowerCase();if(/\/login\.html$/.test(p))return;for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf("sb-")===0&&k.indexOf("-auth-token")!==-1)return;}document.documentElement.style.display="none";location.replace("/login.html");}catch(e){}})();</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Greenthumb Abbey &mdash; Mods, Workshop &amp; Curiosities</title>
-  <meta name="description" content="Creator profile and mod showcase for Project Zomboid, RimWorld, and custom living-room contraptions by His Grace the Duke of Errol a Dude of Greenthumb Abbey.">
-  <meta name="theme-color" content="#21190F">
+  <title>Greenthumb Abbey</title>
+  <meta name="description" content="Greenthumb Abbey: prototypes, Steam Workshop mods for Project Zomboid and RimWorld, CK2 Wheel of Time overhaul, Open Library Lounge, and living-room contraptions.">
+  <meta name="theme-color" content="#E8DFCA">
   <link rel="icon" href="assets/ga-coin.png" type="image/png">
   <style>
     :root {
-      --parchment: #F0E4C7;
-      --parchment-hi: #FBF4E1;
-      --parchment-lo: #E5D4AE;
-      --walnut: #21190F;
-      --walnut-hi: #2E2315;
-      --ink: #211A0E;
-      --ink-soft: #5A4A33;
-      --brass: #B98C2E;
-      --brass-hi: #DBBE78;
-      --moss: #24472C;
-      --moss-hi: #14532D;
-      --border: #C4AD82;
+      --paper: #EAE0CA;
+      --paper-soft: #E2D5BA;
+      --ink: #1F1B15;
+      --ink-2: #4A4133;
+      --ink-3: #706350;
+      --moss: #23492E;
+      --moss-hi: #2E5F3C;
+      --brass: #8F6B24;
+      --rule: rgba(31, 27, 21, 0.14);
       --font-serif: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
       --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
@@ -28,32 +26,34 @@
     html { scroll-behavior: smooth; }
     body {
       min-height: 100vh;
-      background: radial-gradient(circle at 50% 24%, var(--parchment-hi) 0%, var(--parchment) 58%, var(--parchment-lo) 100%);
+      background: var(--paper);
       color: var(--ink);
       font-family: var(--font-serif);
-      line-height: 1.6;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
     body::before {
       content: "";
       position: fixed;
       inset: 0;
+      z-index: 0;
       pointer-events: none;
-      opacity: .055;
+      background: url("assets/ornaments/heraldic-stag.png") center center / min(520px, 72vw) no-repeat;
+      opacity: 0.085;
       mix-blend-mode: multiply;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
+    header, main, footer { position: relative; z-index: 1; }
     .sans { font-family: var(--font-sans); }
-    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 22px; position: relative; z-index: 1; }
+    .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
 
-    /* Walnut Sticky Header */
+    /* Header */
     header {
       position: sticky;
       top: 0;
       z-index: 30;
-      background: linear-gradient(180deg, var(--walnut-hi) 0%, var(--walnut) 100%);
-      border-bottom: 2px solid var(--brass);
-      box-shadow: 0 8px 26px rgba(24, 17, 7, 0.28);
+      background: rgba(234, 224, 202, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
     }
     .header-in {
       display: flex;
@@ -63,214 +63,162 @@
       gap: 12px;
       padding: 12px 0;
     }
-    .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: #F7EED7; }
-    .brand img { width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid var(--brass-hi); }
-    .brand-name { font-size: 19px; font-weight: 700; letter-spacing: 0.02em; display: block; }
-    .brand-sub { font-size: 10px; color: var(--brass-hi); text-transform: uppercase; letter-spacing: 0.16em; display: block; }
-    nav { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+    .brand img { width: 38px; height: 38px; border-radius: 50%; }
+    .brand-name { font-size: 18px; font-weight: 700; letter-spacing: 0.01em; }
+    nav { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
     nav a {
       text-decoration: none;
-      color: #E3D6B8;
+      color: var(--ink-2);
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 600;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      padding: 7px 13px;
+      padding: 7px 12px;
       border-radius: 999px;
-      border: 1px solid transparent;
-      transition: all 0.15s ease;
+      transition: background 0.15s ease, color 0.15s ease;
     }
-    nav a:hover { color: #FFF9EB; border-color: rgba(219, 190, 120, 0.45); background: rgba(255,255,255,0.06); }
+    nav a:hover { color: var(--ink); background: rgba(31, 27, 21, 0.07); }
     nav a.portal-tab {
-      background: rgba(36, 71, 44, 0.85);
-      border-color: var(--brass);
-      color: #EBF7DF;
-    }
-    nav a.portal-tab:hover { background: var(--moss); color: #fff; }
-
-    /* Bookplate Hero Crest */
-    .hero { padding: 38px 0 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; }
-    .plate {
-      position: relative;
-      width: min(94vw, 940px);
-      padding: clamp(14px, 2vw, 24px);
-      background: radial-gradient(120% 120% at 50% 35%, #FDF9EE 0%, #F4E8CC 72%, #EAD9B3 100%);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      box-shadow: 0 20px 48px rgba(38, 27, 11, 0.16), inset 0 1px 0 rgba(255, 252, 243, 0.85);
-    }
-    .plate::after {
-      content: "";
-      position: absolute;
-      inset: 10px;
-      border: 1px solid rgba(185, 140, 46, 0.48);
-      border-radius: 8px;
-      pointer-events: none;
-    }
-    .plate img {
-      width: 100%;
-      max-height: 480px;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-      mix-blend-mode: multiply;
-    }
-    .hero-banner {
-      max-width: 780px;
-      background: linear-gradient(180deg, var(--walnut-hi) 0%, var(--walnut) 100%);
-      border: 1px solid #5A4A2A;
-      border-radius: 12px;
-      padding: 20px 28px;
-      color: #F4EAD5;
-      box-shadow: 0 14px 32px rgba(24, 17, 7, 0.22);
-    }
-    .kicker {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--brass-hi);
-      border-bottom: 1px solid rgba(219, 190, 120, 0.35);
-      padding-bottom: 5px;
-      margin-bottom: 10px;
-    }
-    .hero-banner h1 { font-size: clamp(22px, 3.2vw, 32px); font-weight: 600; margin-bottom: 8px; }
-    .hero-banner p { font-size: 14px; color: #D5C8AA; }
-
-    .ribbon-divider {
-      display: block;
-      width: min(360px, 75%);
-      margin: 10px auto 4px;
-      opacity: 0.72;
-      mix-blend-mode: multiply;
-    }
-
-    /* Section Headings */
-    section.wing { padding: 30px 0; }
-    .wing-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      border-bottom: 1.5px solid var(--border);
-      padding-bottom: 12px;
-      margin-bottom: 22px;
-      flex-wrap: wrap;
-    }
-    .wing-title-wrap { display: flex; align-items: center; gap: 14px; }
-    .wing-ornament { width: 54px; height: 54px; object-fit: contain; mix-blend-mode: multiply; }
-    .wing-head h2 { font-size: 28px; color: var(--ink); line-height: 1.15; }
-    .wing-head .sub { font-size: 13px; color: var(--ink-soft); }
-    .wing-badge {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      border-radius: 999px;
       background: var(--moss);
-      color: #F4EAD5;
-      border: 1px solid var(--brass);
+      color: #F6F1E4;
+      margin-left: 4px;
+    }
+    nav a.portal-tab:hover { background: var(--moss-hi); }
+
+    /* Hero: blown-up lion on the left, copy on the right */
+    .hero {
+      position: relative;
+      padding: 48px 0 44px;
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 32px;
+      align-items: center;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero h1 {
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.12;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+    .hero p {
+      font-size: 16px;
+      color: var(--ink-2);
+      max-width: 50ch;
+      margin-bottom: 22px;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .hero-lion {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    .hero-lion img {
+      width: min(100%, 400px);
+      height: auto;
+      display: block;
+      mix-blend-mode: multiply;
     }
 
-    /* Illuminated Mod Folio Cards */
-    .folio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-      gap: 20px;
-    }
-    .folio {
-      position: relative;
-      background: linear-gradient(170deg, #FDF9EE 0%, #F3E6C8 100%);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      box-shadow: 0 10px 26px rgba(38, 27, 11, 0.1), inset 0 1px 0 rgba(255, 253, 246, 0.9);
-      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
-    }
-    .folio:hover { transform: translateY(-4px); border-color: var(--brass); box-shadow: 0 16px 34px rgba(38, 27, 11, 0.18); }
-    .folio-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .folio-tag {
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 999px;
-      background: rgba(36, 71, 44, 0.12);
-      color: var(--moss);
-      border: 1px solid rgba(36, 71, 44, 0.3);
-    }
-    .folio-id { font-size: 11px; color: var(--ink-soft); font-weight: 700; }
-    .folio h3 { font-size: 21px; color: var(--ink); line-height: 1.2; }
-    .folio p { font-size: 14px; color: var(--ink-soft); }
-    .folio ul { padding-left: 18px; font-size: 13px; color: #3D3120; display: flex; flex-direction: column; gap: 5px; margin-bottom: 6px; }
+    /* Buttons & Links */
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      align-self: flex-start;
-      margin-top: auto;
+      gap: 7px;
       text-decoration: none;
-      font-weight: 800;
+      font-weight: 700;
       font-size: 12px;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      padding: 9px 16px;
+      padding: 10px 18px;
       border-radius: 999px;
-      background: linear-gradient(180deg, var(--walnut-hi), var(--walnut));
-      color: var(--brass-hi);
-      border: 1px solid var(--brass);
-      transition: transform 0.12s ease, background 0.15s ease;
+      border: 1px solid var(--ink-2);
+      color: var(--ink);
+      transition: all 0.15s ease;
     }
-    .btn:hover { transform: translateY(-1px); background: var(--moss); color: #fff; }
-    .btn-moss { background: linear-gradient(180deg, #2d5937, var(--moss)); color: #F7F1E1; }
+    .btn:hover { background: var(--ink); color: var(--paper); }
+    .btn-moss {
+      background: var(--moss);
+      color: #F6F1E4;
+      border-color: var(--moss);
+    }
+    .btn-moss:hover { background: var(--moss-hi); border-color: var(--moss-hi); color: #fff; }
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--moss);
+      text-decoration: none;
+      margin-top: 8px;
+    }
+    .text-link:hover { text-decoration: underline; }
 
-    /* RetroMaster 3000 Walnut & Emerald Showcase Plate */
-    .contraption {
-      background: linear-gradient(160deg, var(--walnut-hi) 0%, #161009 100%);
-      border: 2px solid var(--brass);
-      border-radius: 18px;
-      padding: 28px;
-      color: #F4EAD5;
-      box-shadow: 0 18px 42px rgba(24, 17, 7, 0.28);
+    /* Natural Editorial Sections (no cards) */
+    section.wing { padding: 48px 0; scroll-margin-top: 72px; border-bottom: 1px solid var(--rule); }
+    .wing-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .wing-ornament {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+    .wing-head h2 { font-size: 28px; color: var(--ink); line-height: 1.15; }
+    .wing-head .sub { font-size: 14px; color: var(--ink-3); }
+
+    /* Open flowing items */
+    .stream {
       display: grid;
-      grid-template-columns: 1.25fr 1fr;
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px 40px;
+    }
+    .entry {
+      padding-top: 14px;
+      border-top: 1px solid var(--rule);
+    }
+    .entry h3 { font-size: 20px; color: var(--ink); margin-bottom: 6px; line-height: 1.25; }
+    .entry p { font-size: 14px; color: var(--ink-2); margin-bottom: 12px; }
+    .entry ul { padding-left: 18px; font-size: 13px; color: var(--ink-2); display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+    .meta { font-size: 12px; color: var(--ink-3); }
+
+    /* Split showcases (CK2 & RetroMaster 3000) */
+    .split {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 32px;
       align-items: center;
     }
-    .contraption h2 { font-size: 28px; color: var(--brass-hi); margin: 8px 0; }
-    .contraption p { font-size: 14px; color: #D5C8AA; margin-bottom: 14px; }
-    .spec-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(185, 140, 46, 0.35);
-      border-radius: 12px;
-      padding: 16px;
+    .split img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+      box-shadow: 0 14px 32px rgba(31, 27, 21, 0.14);
     }
-    .spec strong { display: block; color: var(--brass-hi); font-size: 15px; }
-    .spec span { font-size: 12px; color: #C5B796; }
-    .lock-note { font-size: 12px; color: #AFA07E; margin-top: 10px; }
+    .split h3 { font-size: 24px; color: var(--ink); margin-bottom: 10px; }
+    .split p { font-size: 15px; color: var(--ink-2); margin-bottom: 14px; }
 
     footer {
-      margin-top: 42px;
-      background: linear-gradient(180deg, var(--walnut-hi), var(--walnut));
-      border-top: 2px solid var(--brass);
-      padding: 26px 0 36px;
-      color: #CBBE9F;
+      padding: 32px 0 44px;
+      color: var(--ink-3);
       font-size: 13px;
     }
-    .footer-in { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
-    footer a { color: var(--brass-hi); text-decoration: none; }
+    .footer-in { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
+    footer a { color: var(--moss); text-decoration: none; font-weight: 600; }
     footer a:hover { text-decoration: underline; }
 
-    @media (max-width: 780px) { .contraption { grid-template-columns: 1fr; padding: 22px; } }
+    @media (max-width: 820px) {
+      .hero, .split { grid-template-columns: 1fr; }
+      .hero { padding: 32px 0; }
+    }
   </style>
 </head>
 <body>
@@ -278,18 +226,14 @@
     <div class="wrap header-in">
       <a class="brand" href="index.html">
         <img src="assets/ga-coin.png" alt="Greenthumb Abbey Seal">
-        <span>
-          <span class="brand-name">Greenthumb Abbey</span>
-          <span class="brand-sub sans">Mods &amp; Curiosities</span>
-        </span>
+        <span class="brand-name">Greenthumb Abbey</span>
       </a>
       <nav class="sans" aria-label="Primary">
-        <a href="#zomboid">Project Zomboid</a>
+        <a href="#lab">Lab</a>
+        <a href="#zomboid">Zomboid</a>
         <a href="#rimworld">RimWorld</a>
-        <a href="#ck2">Crusader Kings II</a>
-        <a href="#stationping">StationPing</a>
+        <a href="#ck2">CK2</a>
         <a href="#open-library">Open Library</a>
-        <a href="#contraptions">RetroMaster 3000</a>
         <a class="portal-tab" href="https://play.greenthumbabbey.com">&#128274; Family Portal</a>
       </nav>
     </div>
@@ -297,317 +241,198 @@
 
   <main class="wrap">
     <section class="hero">
-      <div class="plate">
-        <img src="assets/ga-logo.png" alt="Greenthumb Abbey Engraved Crest">
+      <div class="hero-lion">
+        <img src="assets/ornaments/heraldic-lion-rampant.png" alt="Heraldic Lion Rampant">
       </div>
-      <div class="hero-banner">
-        <div class="kicker sans">The Abbey Workshop &middot; For Funsies</div>
-        <h1>Mods, Sandboxes &amp; Midnight Contraptions</h1>
+      <div>
+        <h1>Experiments, Mods &amp; Midnight Contraptions</h1>
         <p class="sans">
           Curated by <strong>His Grace the Duke of Errol a Dude of Greenthumb Abbey</strong> &mdash;
-          live Steam Workshop overhauls for <strong>Project Zomboid</strong> and <strong>RimWorld</strong>,
-          a <strong>Crusader Kings II</strong> Wheel of Time total conversion, and eccentric home-console tinkering.
+          where rough ideas, playable prototypes, Steam Workshop mods, books, and living-room tinkering live before anything graduates to the studio.
         </p>
+        <div class="hero-actions sans">
+          <a class="btn btn-moss" href="#lab">Explore the Lab &rarr;</a>
+          <a class="btn" href="https://burntthumbworks.com/" target="_blank" rel="noopener">Burnt Thumb Works &rarr;</a>
+        </div>
       </div>
-      <img class="ribbon-divider" src="assets/ornaments/manuscript-border-ribbon.png" alt="">
     </section>
 
-    <!-- PROJECT ZOMBOID WING -->
+    <!-- THE LAB -->
+    <section class="wing" id="lab">
+      <div class="wing-head">
+        <div>
+          <h2>The Lab &amp; Prototypes</h2>
+          <div class="sub sans">Early builds, app concepts, coloring books, and fiction in the works</div>
+        </div>
+      </div>
+
+      <div class="stream">
+        <article class="entry">
+          <h3>Scarward</h3>
+          <p>Set in the world of <em>The Hook and the Skein</em>. Hold the Scar borderlands against Vrakoni and Hooked Ones as the Rust rises.</p>
+          <a class="btn btn-moss sans" href="https://burntthumbworks.com/games/scarward/play/" target="_blank" rel="noopener">Play prototype &rarr;</a>
+        </article>
+
+        <article class="entry">
+          <h3>Garden Sage</h3>
+          <p>An early garden-bed and planting-schedule notebook concept for tracking seed trays, raised beds, and crop notes.</p>
+          <a class="btn sans" href="https://burntthumbworks.com/apps/garden-sage/demo/" target="_blank" rel="noopener">Try concept slice &rarr;</a>
+        </article>
+
+        <article class="entry">
+          <h3>Pantry Panda</h3>
+          <p>A kitchen and pantry inventory experiment built to see what dinner comes together from what is already on the shelf.</p>
+          <a class="btn sans" href="https://burntthumbworks.com/apps/pantry-panda/demo/" target="_blank" rel="noopener">Try concept slice &rarr;</a>
+        </article>
+
+        <article class="entry">
+          <h3>Coloring Books &amp; Original Novels</h3>
+          <p>Illustrated KDP coloring-book editions and upcoming original fiction projects currently taking shape on the Abbey workbench.</p>
+        </article>
+
+        <article class="entry">
+          <h3>Pok&eacute;Vault</h3>
+          <p>Trading card scanning and cataloging system with webcam OCR, barcode gun support, QR phone companion, and Collect / Sell / Trade tracking.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECT ZOMBOID -->
     <section class="wing" id="zomboid">
       <div class="wing-head">
-        <div class="wing-title-wrap">
-          <img class="wing-ornament" src="assets/ornaments/heraldic-lion-rampant.png" alt="">
-          <div>
-            <h2>Project Zomboid Mods</h2>
-            <div class="sub sans">Build 41 &amp; Build 42 Dual-Tree Parity &middot; Live on Steam Workshop</div>
-          </div>
+        <div>
+          <h2>Project Zomboid Mods</h2>
+          <div class="sub sans">Build 41 &amp; Build 42 on Steam Workshop</div>
         </div>
-        <span class="wing-badge sans">3 Live Mods</span>
       </div>
 
-      <div class="folio-grid">
-        <article class="folio">
-          <div class="folio-top sans">
-            <span class="folio-tag">v0.2.0 &middot; SP &amp; MP PvP/Co-op</span>
-            <span class="folio-id">Workshop #3838755002</span>
-          </div>
+      <div class="stream">
+        <article class="entry">
           <h3>There Can Be Only One: The Knox Gathering</h3>
-          <p>Highlander meets Project Zomboid. Start mortal until First Death or terminal Knox infection awakens Immortality, or pick from 6 Premade Highlanders.</p>
-          <ul class="sans">
-            <li>Multiplayer <em>The Buzz</em> player radar &amp; blackout danger HUD</li>
-            <li>PvP blade beheading, Quickening theft &amp; Co-op toggle</li>
-            <li>Holy Ground Sanctuary PvP shield + Watcher Field Journals</li>
-            <li>Zombie-kill tier leveling (50/250/600) with Quickstep, Blade Imbue &amp; Shockwave</li>
-          </ul>
-          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3838755002" target="_blank" rel="noopener">View on Steam Workshop &rarr;</a>
+          <p>Highlander meets Project Zomboid. Awaken Immortality on First Death or pick from 6 Premade Highlanders, with multiplayer <em>The Buzz</em> radar, PvP beheading, and Holy Ground sanctuaries.</p>
+          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3838755002" target="_blank" rel="noopener">Steam Workshop #3838755002 &rarr;</a>
         </article>
 
-        <article class="folio">
-          <div class="folio-top sans">
-            <span class="folio-tag">v0.4.0 &middot; 4-Phase Apocalypse</span>
-            <span class="folio-id">Workshop #3841679897</span>
-          </div>
+        <article class="entry">
           <h3>The Breaking: First Age Collapse</h3>
-          <p>A grounded, zero-magic 4-phase apocalypse imagining the July 1993 Knox Event as the opening of the Bore and the start of the Breaking of the World.</p>
-          <ul class="sans">
-            <li><strong>Phase 1:</strong> The Whispering &mdash; normal 1993 Knox (guns, cars &amp; power work)</li>
-            <li><strong>Phase 2:</strong> The Turning &mdash; Sprinters, storm brownouts &amp; fouled outdoor water</li>
-            <li><strong>Phase 3:</strong> The Grid Fails &mdash; permanent hydro shutoff &amp; perpetual Blighted Dusk</li>
-            <li><strong>Phase 4:</strong> The Breaking &mdash; 72h+ endless night</li>
-          </ul>
-          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3841679897" target="_blank" rel="noopener">View on Steam Workshop &rarr;</a>
+          <p>Grounded, zero-magic 4-phase apocalypse imagining the July 1993 Knox Event as the start of the Breaking of the World—escalating from normal 1993 Knox into sprinters, permanent shutoffs, and endless night.</p>
+          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3841679897" target="_blank" rel="noopener">Steam Workshop #3841679897 &rarr;</a>
         </article>
 
-        <article class="folio">
-          <div class="folio-top sans">
-            <span class="folio-tag">Utility &middot; Build 41 &amp; 42</span>
-            <span class="folio-id">Workshop #3838755214</span>
-          </div>
+        <article class="entry">
           <h3>Divine Cheats &amp; Vehicle Suite</h3>
           <p>Right-click sandbox utility and vehicle spawner/repair suite built for rapid mod testing and chaotic solo runs.</p>
-          <ul class="sans">
-            <li>Full vehicle repair, 100% fuel, hotwire/key, god mode &amp; all-pack spawner</li>
-            <li>God/ghost mode, death aura, heal/purge Knox virus &amp; max skills</li>
-            <li>5 supply kits, zombie spawner/clearer &amp; quick travel</li>
-          </ul>
-          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3838755214" target="_blank" rel="noopener">View on Steam Workshop &rarr;</a>
+          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3838755214" target="_blank" rel="noopener">Steam Workshop #3838755214 &rarr;</a>
         </article>
       </div>
     </section>
 
-    <!-- RIMWORLD WING -->
+    <!-- RIMWORLD -->
     <section class="wing" id="rimworld">
       <div class="wing-head">
-        <div class="wing-title-wrap">
-          <img class="wing-ornament" src="assets/ornaments/heraldic-stag.png" alt="">
-          <div>
-            <h2>RimWorld Mods</h2>
-            <div class="sub sans">RimWorld 1.6 &amp; 1.7 &middot; The Wheel of Time Overhaul Suite &amp; Arthurian Chaos</div>
-          </div>
+        <div>
+          <h2>RimWorld Mods</h2>
+          <div class="sub sans">The Wheel of Time Overhaul Suite &amp; Arthurian Chaos</div>
         </div>
-        <span class="wing-badge sans">4 Live + 1 In Forge</span>
       </div>
 
-      <div class="folio-grid">
-        <article class="folio">
-          <div class="folio-top sans">
-            <span class="folio-tag">Core Framework</span>
-            <span class="folio-id">Workshop #3841678752</span>
-          </div>
-          <h3>Wheel of Time: Core (The Wheel Turns)</h3>
-          <p>Core metaphysical framework bringing the One Power and canonical Randland geography to RimWorld.</p>
-          <ul class="sans">
-            <li>Split <em>Saidin</em> vs <em>Saidar</em> weaves, Five Powers, Taint, Linking &amp; <em>Angreal</em></li>
-            <li>The True Power, Wolfbrother &amp; <em>Tel'aran'rhiod</em>, Ogier Treesinging</li>
-            <li>Canonical Randland &amp; Aiel Waste 3D globe map (47 cities, 12 rivers)</li>
-          </ul>
-          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3841678752" target="_blank" rel="noopener">View on Steam Workshop &rarr;</a>
+      <div class="stream">
+        <article class="entry">
+          <h3>Wheel of Time: Core</h3>
+          <p>Core metaphysical framework bringing the One Power (<em>Saidin</em> &amp; <em>Saidar</em>), Taint, <em>Angreal</em>, and canonical Randland 3D globe geography to RimWorld.</p>
+          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3841678752" target="_blank" rel="noopener">Steam Workshop #3841678752 &rarr;</a>
         </article>
 
-        <article class="folio">
-          <div class="folio-top sans">
-            <span class="folio-tag">Factions &amp; Royalty</span>
-            <span class="folio-id">Workshop #3841678913</span>
-          </div>
+        <article class="entry">
           <h3>Wheel of Time: Nations &amp; Towers</h3>
-          <p>Adds the major nations, towers, and orders of the Wheel of Time, including Seanchan Imperial Return Royalty integration.</p>
-          <ul class="sans">
-            <li>White Tower (Aes Sedai &amp; Warders), Black Tower (Asha'man), Andor &amp; Two Rivers</li>
-            <li>Aiel (Wise Ones &amp; <em>Ji'e'toh</em>), Children of the Light &amp; Ogier <em>Stedding</em></li>
-            <li>Seanchan <em>Corenne</em> Royalty Empire, <em>Sul'dam</em> &amp; <em>Damane</em></li>
-          </ul>
-          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3841678913" target="_blank" rel="noopener">View on Steam Workshop &rarr;</a>
+          <p>Adds the White Tower, Black Tower, Andor, Two Rivers, Aiel, Children of the Light, Ogier <em>Stedding</em>, and Seanchan Royalty Empire.</p>
+          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3841678913" target="_blank" rel="noopener">Steam Workshop #3841678913 &rarr;</a>
         </article>
 
-        <article class="folio">
-          <div class="folio-top sans">
-            <span class="folio-tag">Standalone Faction</span>
-            <span class="folio-id">Workshop #3841678962</span>
-          </div>
+        <article class="entry">
           <h3>Wheel of Time: The Shadow &amp; The Blight</h3>
-          <p>Standalone Shadowspawn threat mod (requires only Harmony) unleashing the forces of the Blight on any RimWorld colony.</p>
-          <ul class="sans">
-            <li>5 Trolloc beast-tribes with custom directional beast-heads</li>
-            <li>Myrddraal (Shadow Step &amp; Death Thrash), Draghkar &amp; Darkhounds</li>
-            <li>Stealth Gray Men &amp; Weave-immune Gholam + Foxhead Medallion counter</li>
-          </ul>
-          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3841678962" target="_blank" rel="noopener">View on Steam Workshop &rarr;</a>
+          <p>Standalone Shadowspawn threat mod unleashing 5 Trolloc tribes, Myrddraal, Draghkar, Darkhounds, Gray Men, and Gholam.</p>
+          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3841678962" target="_blank" rel="noopener">Steam Workshop #3841678962 &rarr;</a>
         </article>
 
-        <article class="folio">
-          <div class="folio-top sans">
-            <span class="folio-tag">Visual &amp; UI Makeover</span>
-            <span class="folio-id">Workshop #3841679116</span>
-          </div>
+        <article class="entry">
           <h3>Wheel of Time: Visual &amp; UI Makeover</h3>
-          <p>Complete visual, architectural, VFX, and UI overhaul tying the entire Wheel of Time suite together.</p>
-          <ul class="sans">
-            <li>Custom WoT apparel, armor, Heron-marked blades &amp; Two Rivers longbows</li>
-            <li>White Tower &amp; Stedding architectural styling</li>
-            <li>Colored One Power weave VFX</li>
-          </ul>
-          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3841679116" target="_blank" rel="noopener">View on Steam Workshop &rarr;</a>
+          <p>Custom WoT apparel, Heron-marked blades, White Tower &amp; Stedding architecture, and colored One Power weave VFX.</p>
+          <a class="btn sans" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3841679116" target="_blank" rel="noopener">Steam Workshop #3841679116 &rarr;</a>
         </article>
 
-        <article class="folio">
-          <div class="folio-top sans">
-            <span class="folio-tag">RimWorld 1.5&ndash;1.7 &middot; Local Forge</span>
-            <span class="folio-id">Coming to Workshop</span>
-          </div>
+        <article class="entry">
           <h3>An American in Camelot</h3>
-          <p>Anachronistic RimWorld scenario locking NPC factions and equipment into medieval Arthurian tech while your colony brings questionable modern bravado to the table.</p>
-          <ul class="sans">
-            <li>Medieval-locked NPC world &amp; pawn loadouts</li>
-            <li>Custom Boneworks RimWorld experiment in active testing</li>
-          </ul>
+          <p>Anachronistic scenario locking NPC factions into medieval Arthurian tech while your colony brings questionable modern bravado.</p>
+          <span class="meta sans">In active testing</span>
         </article>
       </div>
     </section>
 
-    <!-- CRUSADER KINGS II WING -->
+    <!-- CRUSADER KINGS II -->
     <section class="wing" id="ck2">
       <div class="wing-head">
-        <div class="wing-title-wrap">
-          <img class="wing-ornament" src="assets/ornaments/heraldic-lion-rampant.png" alt="">
-          <div>
-            <h2>Crusader Kings II Total Conversion</h2>
-            <div class="sub sans">CK2 3.3.5 Clausewitz Blueprint &amp; Compiled 3072&times;2048 Custom Map &middot; Bloodworks Forge</div>
-          </div>
+        <div>
+          <h2>Crusader Kings II Total Conversion</h2>
+          <div class="sub sans">CK2 3.3.5 &middot; ~780 Provinces &middot; 3072&times;2048 Randland Atlas</div>
         </div>
-        <span class="wing-badge sans">Total Conversion Overhaul</span>
       </div>
 
-      <div class="folio-grid">
-        <article class="folio" style="grid-column: 1 / -1;">
-          <div class="folio-top sans">
-            <span class="folio-tag">CK2 3.3.5 &middot; ~780 Provinces &middot; Multi-Bookmark</span>
-            <span class="folio-id">Bloodworks Total Conversion</span>
-          </div>
-          <h3>The Wheel of Time &mdash; Crusader Kings II Total Conversion</h3>
+      <div class="split">
+        <div>
+          <h3>The Wheel of Time &mdash; CK2 Total Conversion</h3>
           <p>
-            Full Clausewitz total conversion of Robert Jordan&rsquo;s <em>The Wheel of Time</em> built strictly on native CK2 3.3.5 primitives &mdash;
-            featuring a compiled <code>3072&times;2048</code> Randland map (Westlands, Great Blight, Aiel Waste &amp; Sea Folk Isles, 19 navigable major rivers),
-            three Late Third Age bookmarks (<code>978 NE</code> Blood Snow, <code>998 NE</code> Winternight, <code>999 NE</code> Dragon Reborn), and an unlockable Fourth Age transition.
+            Built strictly on native CK2 3.3.5 primitives with a compiled <code>3072&times;2048</code> Randland map (19 navigable major rivers), playable non-dynastic orders (White Tower, Black Tower, Aiel Clan Holds, Sea Folk), 3-layer One Power &amp; <em>Saidin</em> Taint, and multi-theater <em>Tarmon Gai&rsquo;don</em>.
           </p>
-          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; align-items: center; margin-top: 6px;">
-            <ul class="sans">
-              <li><strong>Hybrid Pattern Engine:</strong> Canon-Guided, Dynamic Dragon, or Pure Sandbox game rules</li>
-              <li><strong>Playable Non-Dynastic Orders:</strong> White Tower, Black Tower, Children of the Light, Aiel Clan Holds, Sea Folk Merchant Republics &amp; Forsaken/Darkfriends</li>
-              <li><strong>3-Layer Native One Power:</strong> Power tiers, 5-Power traits, <em>Saidin</em> Taint &amp; Cleansing, <em>special_troops</em> channelers, <em>The Ways</em> &amp; <em>Tel&rsquo;aran&rsquo;rhiod</em></li>
-              <li><strong>Endgame &amp; Off-Map Powers:</strong> Seanchan <em>Corenne</em> invasion, Tar Valon Banking, 12 Great Works &amp; multi-theater <em>Tarmon Gai&rsquo;don</em></li>
-            </ul>
-            <figure style="margin:0; text-align:center;">
-              <img src="assets/wot-ck2-atlas.png" alt="Compiled Wheel of Time CK2 Randland Physical Atlas" style="width:100%; border-radius:10px; border:1.5px solid var(--brass); box-shadow:0 8px 22px rgba(24,17,7,0.22); display:block;">
-              <figcaption class="sans" style="font-size:11px; color:var(--ink-soft); margin-top:6px;">Compiled 3072&times;2048 Randland physical atlas (Westlands, Blight, Aiel Waste &amp; Sea Folk Isles)</figcaption>
-            </figure>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- STATIONPING HOMEBREW DESKTOP APP -->
-    <section class="wing" id="stationping">
-      <div class="wing-head">
-        <div class="wing-title-wrap">
-          <img class="wing-ornament" src="assets/stationping-icon.png" alt="StationPing Emblem" style="mix-blend-mode:normal; border-radius:10px;">
-          <div>
-            <h2>StationPing</h2>
-            <div class="sub sans">Zero-Server Multi-PC AI Agent Intercom &amp; Desktop Relay &middot; Windows Portable v1.0.0</div>
-          </div>
         </div>
-        <span class="wing-badge sans">Homebrew App &middot; $0 Infra</span>
-      </div>
-
-      <div class="folio-grid">
-        <article class="folio" style="grid-column: 1 / -1;">
-          <div class="folio-top sans">
-            <span class="folio-tag">v1.0.0 &middot; Standalone Windows App + MCP Server</span>
-            <span class="folio-id">Works Over Cloud Drive or LAN</span>
-          </div>
-          <h3>Cross-Station AI Intercom &mdash; Without Servers, Accounts, or Monthly Bills</h3>
-          <p>
-            Built for multi-PC workshops where AI coding agents and humans work side by side across different computers.
-            Point <strong>StationPing</strong> at any synced folder you already use (Google Drive, OneDrive, Dropbox, iCloud, Syncthing, or a LAN share)
-            and every workstation gets a live, conflict-free telegraph feed, System Tray alerts, and a built-in universal <strong>MCP server</strong>.
-          </p>
-          <ul class="sans">
-            <li><strong>Works Anywhere Over the Web:</strong> Syncs across cities via your existing cloud drive, or 100% offline over a local network share</li>
-            <li><strong>Zero Sync Conflicts:</strong> Write-once Markdown relay (<code>pending/</code>, <code>replies/</code>, <code>presence/</code>) with live Online / Idle / Paused station roster</li>
-            <li><strong>Built-In Universal Agent Bridge:</strong> Zero-dependency MCP server (<code>send_ping</code>, <code>check_inbox</code>, <code>reply_ping</code>, <code>watch_once</code>, <code>list_stations</code>) + 1-click connectors for Antigravity, Claude Code, Cursor &amp; Codex</li>
-            <li><strong>Phase Zero Secret Guard &amp; Kill-Switch:</strong> Automatically blocks <code>.env</code> files, private keys, API tokens, and credentialed DB strings before anything touches disk, plus a 1-click Pause Intercom toggle</li>
-          </ul>
-          <p class="sans" style="font-size:12px; color:var(--ink-soft); margin-top:4px;">
-            <strong>Status:</strong> Packaged Windows Portable <code>.exe</code> (<code>v1.0.0</code>) in live multi-workstation use &mdash; public release link coming soon.
-          </p>
-        </article>
+        <img src="assets/wot-ck2-atlas.png" alt="Compiled Wheel of Time CK2 Randland Physical Atlas">
       </div>
     </section>
 
     <!-- OPEN LIBRARY LOUNGE -->
     <section class="wing" id="open-library">
       <div class="wing-head">
-        <div class="wing-title-wrap">
-          <img class="wing-ornament" src="assets/ornaments/heraldic-stag.png" alt="">
-          <div>
-            <h2>Open Library Lounge</h2>
-            <div class="sub sans">Cross-Device Internet Archive Book Reader PWA &middot; Phone, Tablet, Laptop &amp; TV</div>
-          </div>
+        <div>
+          <h2>Open Library Lounge</h2>
+          <div class="sub sans">Cross-Device Book Reader PWA</div>
         </div>
-        <span class="wing-badge sans">Live Web App &middot; Free</span>
       </div>
 
-      <div class="folio-grid">
-        <article class="folio" style="grid-column: 1 / -1;">
-          <div class="folio-top sans">
-            <span class="folio-tag">Installable PWA &middot; 10-Foot TV Mode</span>
-            <span class="folio-id">Powered by Open Library</span>
-          </div>
-          <h3>The Abbey Reading Room &mdash; Open Library Lounge</h3>
-          <p>
-            A zero-spend, cross-device Progressive Web App for browsing, saving, and reading public-domain and open-access books
-            from the Internet Archive&rsquo;s Open Library &mdash; built for phones, tablets, laptops, and Fire TV / Smart TVs.
-          </p>
-          <ul class="sans">
-            <li><strong>Live Discovery &amp; Readable-Now Filter:</strong> Trending books, curated classics/sci-fi/fantasy/history shelves &amp; instant catalog search</li>
-            <li><strong>In-App BookReader &amp; Personal Bookshelf:</strong> Fullscreen reader overlay, <em>Want to Read / Reading / Finished</em> shelves, star ratings, notes &amp; JSON export/import</li>
-            <li><strong>Couch-Friendly TV Mode &amp; Themes:</strong> Press <code>T</code> for 10-foot remote D-pad navigation plus Evening Dark &amp; Daytime Paper themes</li>
-          </ul>
-          <a class="btn btn-moss sans" href="open-library/">Open Library Lounge &rarr;</a>
-        </article>
-      </div>
+      <p style="max-width: 65ch; color: var(--ink-2); margin-bottom: 16px;">
+        A zero-spend Progressive Web App for browsing, saving, and reading open-access books from Open Library—with an in-app BookReader, personal bookshelves, and 10-foot TV Mode (<code>T</code>).
+      </p>
+      <a class="btn btn-moss sans" href="open-library/">Open Library Lounge &rarr;</a>
     </section>
 
-    <!-- RETROMASTER 3000 SHOWCASE -->
-    <section class="wing" id="contraptions">
-      <div class="contraption">
+    <!-- RETROMASTER 3000 FAMILY PORTAL -->
+    <section class="wing" id="contraptions" style="border-bottom: none;">
+      <div class="split">
         <div>
-          <span class="kicker sans">Abbey Contraption &middot; Showcase Only</span>
-          <h2>RetroMaster 3000</h2>
-          <p class="sans">
-            A custom 2001 Original Xbox-inspired 3D rotating console dashboard and Android / Fire TV APK built for living-room game nights &mdash;
-            chronological 1985&ndash;2013 console hub, 4-player modern Xbox/PlayStation/Backbone Bluetooth controller bridge, Wikipedia Wayback archives, and cross-device Auto-Save.
+          <h3>RetroMaster 3000 &mdash; Family Portal</h3>
+          <p>
+            Our living-room instance of the 2001-inspired 3D console dashboard and Fire TV / Android TV companion APK &mdash; 4-player Bluetooth controller bridge, Wayback archives, and cross-device Auto-Save.
           </p>
-          <a class="btn btn-moss sans" href="https://play.greenthumbabbey.com">&#128274; Open Family Portal &rarr;</a>
-          <p class="lock-note sans">
-            <strong>Private Family Vault:</strong> Public visitors may admire the project showcase; live access is locked behind Cloudflare Access for authorized family Gmail accounts only.
-          </p>
+          <div class="hero-actions sans">
+            <a class="btn btn-moss" href="https://play.greenthumbabbey.com">&#128274; Open Family Portal &rarr;</a>
+            <a class="btn" href="https://burntthumbworks.com/apps/retromaster-3000/" target="_blank" rel="noopener">Standalone Edition &rarr;</a>
+          </div>
+          <p class="meta sans" style="margin-top: 12px;">Locked behind Cloudflare Access for authorized family accounts.</p>
         </div>
-        <div class="spec-grid sans">
-          <div class="spec"><strong>3D Roto-Dial</strong><span>2001 Xbox emerald orb &amp; rotating 3D menus</span></div>
-          <div class="spec"><strong>4-Player Native</strong><span>Fire TV / Google TV / PC Bluetooth controller bridge</span></div>
-          <div class="spec"><strong>Wayback Archive</strong><span>Chronological metadata, box art &amp; Wiki blurbs</span></div>
-          <div class="spec"><strong>Auto-Save</strong><span>Resumes seamlessly across TV, PC &amp; phone</span></div>
-        </div>
+        <img src="assets/retromaster-cover.png" alt="RetroMaster 3000 3D arcade dashboard">
       </div>
     </section>
   </main>
 
   <footer class="sans">
     <div class="wrap footer-in">
-      <span>Curated by <strong>His Grace the Duke of Errol a Dude of Greenthumb Abbey</strong></span>
-      <span>
-        <a href="https://play.greenthumbabbey.com">Family Portal</a>
-      </span>
+      <div>
+        <span>Curated by <strong>His Grace the Duke of Errol a Dude of Greenthumb Abbey</strong></span>
+        <div class="footer-links" style="margin-top: 8px;">
+          <a href="https://burntthumbworks.com/" target="_blank" rel="noopener">Burnt Thumb Works</a>
+          <a href="https://play.greenthumbabbey.com">Family Portal</a>
+        </div>
+      </div>
+      <img src="assets/ga-logo.png" alt="Greenthumb Abbey Crest" style="width: 190px; max-width: 100%; height: auto; mix-blend-mode: multiply; display: block;">
     </div>
   </footer>
 </body>
